@@ -116,12 +116,10 @@ export default function ResetPasswordVerifyScreen() {
             resetToken: response.resetToken,
           },
         });
-
-        return; // Exit early on success
+      } else {
+        // If we get here, verification failed
+        throw new Error(response.error || "Verification failed");
       }
-
-      // If we get here, verification failed
-      throw new Error(response.error || "Verification failed");
     } catch (error: any) {
       console.error("💥 Reset code verification error:", error);
 
